@@ -1,0 +1,16 @@
+header{
+    background-color: #f3e9f1;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+img{
+    width: 350px;
+}
+
+h1{
+    text-align: center;
+}
