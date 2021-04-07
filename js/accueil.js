@@ -39,5 +39,5 @@ const ajoutColonne = (element) => {
 }
 
 const creationCarteProduit = (url, nom, prix) => {
-    return '<figure><img alt="image ourson" src="'+ url +'"/><figcaption>'+ nom +' '+ prix +'€</figcaption></figure>';
+    return '<div class="card"><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body">'+ nom +' '+ prix +'€</div></div>';
 }

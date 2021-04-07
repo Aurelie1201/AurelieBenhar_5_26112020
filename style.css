@@ -6,13 +6,12 @@ header{
     background-color: #f3e9f1;
 }
 
-.navbar{
-    display: flex;
-    justify-content: space-between;
+#logo{
+    width: 35%;
 }
 
-img{
-    width: 350px;
+.navbar-brand{
+    width: 70%;
 }
 
 h1{
@@ -25,4 +24,8 @@ h1{
 
 .jumbotron{
     background: linear-gradient(to bottom, #935df4, #a567c1);
+}
+
+img{
+    width: 400px;
 }
