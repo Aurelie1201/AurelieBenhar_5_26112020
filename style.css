@@ -1,3 +1,7 @@
+body{
+    background-color: #a567c1;
+}
+
 header{
     background-color: #f3e9f1;
 }
@@ -13,4 +17,12 @@ img{
 
 h1{
     text-align: center;
+}
+
+.navbar-toggler{
+    background-color: blue;
+}
+
+.jumbotron{
+    background: linear-gradient(to bottom, #935df4, #a567c1);
 }
