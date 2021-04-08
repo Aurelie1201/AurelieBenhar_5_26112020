@@ -18,7 +18,7 @@ promiseGetProduct
         for(let i = 0; i < response.length; i++){
             url = response[i].imageUrl;
             nom = response[i].name;
-            prix = response[i].price;
+            prix = response[i].price/100;
             idProduit = response[i]._id;
             document.getElementsByClassName('col-md-6')[i].innerHTML = creationCarteProduit(url, nom, prix, idProduit);
         }
