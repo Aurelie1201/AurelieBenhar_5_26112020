@@ -11,11 +11,13 @@ promiseGetProduct
         let prix = response[idProduit].price/100;
         let url = response[idProduit].imageUrl;
         let bouton = document.getElementById('button');
-        localStorage.clear();
+        // localStorage.clear();
         titreProduit(response, idProduit);
         document.getElementById('container').innerHTML = creationCardProduit(url, description, prix, idProduit);
 
+        //////////////////Au clic du bouton, ajout du produit au panier////////////////////
         bouton.addEventListener('click', () => {
+            
             localStorage.setItem(idProduit, response[idProduit].name);
         
             console.log(localStorage);
@@ -38,6 +40,7 @@ const getIdProduit = (response) => {
     return produit;
 }
 
+//////////////////Ajout du nom du nounours comme titre h1////////////////////
 const titreProduit = (response, idProduit) => {
     const titre = document.createElement("h1");
     document.getElementById('titre').appendChild(titre);

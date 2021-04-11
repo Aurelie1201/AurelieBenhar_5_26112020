@@ -29,3 +29,7 @@ h1{
 img{
     width: 400px;
 }
+
+.lignePanier{
+    display: flex;
+}
