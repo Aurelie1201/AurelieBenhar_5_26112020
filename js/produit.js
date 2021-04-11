@@ -1,7 +1,8 @@
 //////////////////Récupération de l'identifiant du produit dans l'url de la page/////////////////////
-var parsedUrl = new URL(window.location.href);
-var id = parsedUrl.searchParams.get("id");
+let parsedUrl = new URL(window.location.href);
+let id = parsedUrl.searchParams.get("id");
 
+//////////////////récupération de la promesse de la requête à l'API////////////////////
 promiseGetProduct
     .then(function(response){
         
@@ -9,8 +10,16 @@ promiseGetProduct
         let description = response[idProduit].description;
         let prix = response[idProduit].price/100;
         let url = response[idProduit].imageUrl;
+        let bouton = document.getElementById('button');
+        localStorage.clear();
         titreProduit(response, idProduit);
         document.getElementById('container').innerHTML = creationCardProduit(url, description, prix, idProduit);
+
+        bouton.addEventListener('click', () => {
+            localStorage.setItem(idProduit, response[idProduit].name);
+        
+            console.log(localStorage);
+        });
     })
 
     .catch(function(erreur){
