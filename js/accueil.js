@@ -1,5 +1,5 @@
 //////////////////récupération de la promesse de la requête à l'API////////////////////
-promiseGetProduct
+promiseGetAPI
     .then(function(response){
 
         let url, nom, prix, id;

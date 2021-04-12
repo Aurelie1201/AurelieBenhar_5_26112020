@@ -1,4 +1,4 @@
-const promiseGetProduct = new Promise(function(resolve, reject){
+const promiseGetAPI = new Promise(function(resolve, reject){
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "https://jwdp5.herokuapp.com/api/teddies", true);
     xhr.onreadystatechange = function(){
@@ -12,4 +12,3 @@ const promiseGetProduct = new Promise(function(resolve, reject){
     }
     xhr.send();
 });
-
