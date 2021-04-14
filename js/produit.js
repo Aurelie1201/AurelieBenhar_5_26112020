@@ -32,7 +32,7 @@ promiseGetProduct
         //////////////////Ajout du nom du nounours comme titre h1////////////////////
         document.getElementById('titre').innerHTML = nom;
         
-        //////////////////réation de la carte produit////////////////////
+        //////////////////création de la carte produit////////////////////
         document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, prix);
 
         let boutonCouleur = document.getElementById('couleur');
@@ -63,7 +63,7 @@ promiseGetProduct
 
 
 const creationCardProduit = (url, description,couleurs, prix) => {
-    return '<div class="card" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body"><div class="card-text">'+ description +'</div><div class="card-text"><label for="couleur">Choisissez la couleur que vous souhaitez</label><br /><select name="couleur" id="couleur">'+ creationListeCouleur(couleurs) +'</select><div id="alerte"></div></div><div class="card-text">'+ prix +'€</div></div></div>';
+    return '<div class="card carteProduit" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body carteProduit-ref"><div class="card-text">'+ description +'</div><div class="card-text carteproduit-ref_colorPrix"><label for="couleur">Choisissez la couleur que vous souhaitez<br /><select name="couleur" id="couleur">'+ creationListeCouleur(couleurs) +'</select></label><div class="card-text">'+ prix +'€</div></div><div id="alerte"></div></div></div>';
 }
 
 const creationListeCouleur = (couleurs) =>{
