@@ -28,8 +28,13 @@ const creationPanier = () =>{
 
 document.getElementById('liste').innerHTML = creationPanier();
 
-//////////////////Au clic sur le bouton 'vider le panier' , le panier est vidé////////////////////
+//////////////////Au clic sur le bouton 'vider le panier', le panier est vidé////////////////////
 bouton.addEventListener('click', () => {
     localStorage.clear();
     document.getElementById('liste').innerHTML = creationPanier();
+    document.getElementById('quantitePanier').innerHTML = localStorage.length;
+    window.scroll(0, 0);    /////Retour en haut de page
 });
+
+//////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
+document.getElementById('quantitePanier').innerHTML = localStorage.length;

@@ -22,10 +22,17 @@
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                    <a class="nav-link" href="commande.html">Votre commande</a>
+                    <a class="nav-link" href="index.html">Nos oursons</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="panier.html">Votre panier</a>
+                    <a class="nav-link" href="panier.html">Votre panier
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                            </svg>
+                            <span id="quantitePanier"></span>
+                        </div>
+                    </a>
                     </li>
                 </ul>
             </div>
@@ -41,11 +48,48 @@
                 <table class="table table-dark" id="liste">
                  
                  </table>
-                <!-- <ul id="liste">
-
-                </ul> -->
-                <button type="button" id="button" class="btn btn-dark">Vider le panier</button>
+                <button type="button" id="button" class="btn btn-dark" href="#">Vider le panier</button>
             </div>
+        </section>
+        <section class="container">
+            <h2>Pour passer commande, remplissez ce formulaire.</h2>
+
+            <form method="POST" action="js/panier.js">
+                <div class="row">
+                    <div class="col">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" class="form-control" id="prenom" placeholder="Votre prénom">
+                    </div>
+                    <div class="col">
+                        <label for="nom">Nom</label>
+                        <input type="text" class="form-control" id="nom" placeholder="Votre nom">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" placeholder="Votre adresse">
+                </div>  
+                <div class="form-row">
+                    <div class="form-group col-8">
+                        <label for="ville">Votre ville</label>
+                        <input type="text" class="form-control" id="ville">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="codePostal">Code postal</label>
+                        <input type="text" maxlength="5" class="form-control" id="codePostal">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="email">Votre Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                
+                <!-- <div class="form-row">
+                    
+                    <label for="codePostal">Code postal</label>
+                    <input type="text" maxlength="5" class="form-control" id="codePostal">
+                </div> -->
+            </form>
         </section>
     </main>
 

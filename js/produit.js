@@ -46,6 +46,7 @@ promiseGetProduct
             }else{
                 document.getElementById('alerte').innerHTML = '';
                 localStorage.setItem(localStorage.length, JSON.stringify(produit));
+                document.getElementById('quantitePanier').innerHTML = localStorage.length;
                 console.log(localStorage);
             }
         });
@@ -54,6 +55,10 @@ promiseGetProduct
         boutonCouleur.addEventListener('change', (selection) =>{
             couleurChoisie = selection.target.value;
         });
+
+        //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
+        document.getElementById('quantitePanier').innerHTML = localStorage.length;
+
     })
     .catch(function(erreur) {
         console.log(erreur);

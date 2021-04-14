@@ -14,8 +14,13 @@ header{
     width: 70%;
 }
 
-h1{
+h1, h2{
     text-align: center;
+}
+
+h2{
+    margin-top: 65px;
+    margin-bottom: 65px;
 }
 
 .navbar-toggler{
@@ -31,7 +36,7 @@ img{
 }
 
 .lignePanier-img{
-    width: 100px;
+    width: 150px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -56,6 +61,12 @@ img{
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .carteAccueil{
         height: 270px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .lignePanier-img{
+        width: 100px;
     }
 }
 

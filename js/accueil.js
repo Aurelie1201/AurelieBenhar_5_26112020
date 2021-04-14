@@ -22,6 +22,8 @@ promiseGetAPI
             idProduit = response[i]._id;
             document.getElementsByClassName('col-md-6')[i].innerHTML = creationCarteProduit(url, nom, prix, idProduit);
         }
+            //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
+        document.getElementById('quantitePanier').innerHTML = localStorage.length;
     })
     
     .catch(function(erreur){
