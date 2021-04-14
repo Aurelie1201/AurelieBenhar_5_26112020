@@ -33,3 +33,38 @@ img{
 .lignePanier{
     display: flex;
 }
+
+@media screen and (min-width: 1200px) {
+    .carteAccueil{
+        height: 360px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .carteAccueil{
+        height: 330px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .carteAccueil{
+        height: 270px;
+    }
+}
+
+.carteAccueil{
+    background-color: #f3e9f1;
+    color: #a567c1;
+    border-radius: 15%;
+    overflow: hidden;
+}
+
+.carteAccueil-img{
+    height: 82%;
+}
+
+.carteAccueil-ref{
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+}

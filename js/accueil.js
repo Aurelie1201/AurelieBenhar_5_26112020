@@ -41,5 +41,5 @@ const ajoutColonne = (element) => {
 }
 //////////écriture du html pour créer une 'card' pour un produit//////////
 const creationCarteProduit = (url, nom, prix, idProduit) => {
-    return '<a class="card m-4" href="produit.html?id='+ idProduit +'"><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body">'+ nom +' '+ prix +'€</div></a>';
+    return '<a class="card m-4 carteAccueil" href="produit.html?id='+ idProduit +'"><img class="card-img-top carteAccueil-img" alt="image ourson" src="'+ url +'"/><div class="card-body"><div class="card-text carteAccueil-ref"><div>'+ nom +'</div><div>'+ prix +'€</div></div></div></a>';
 }
