@@ -12,3 +12,4 @@ const promiseGetAPI = new Promise(function(resolve, reject){
     }
     xhr.send();
 });
+

@@ -25,6 +25,8 @@ promiseGetProduct
         let url = response.imageUrl;
         let nom = response.name;
         let couleurs = response.colors;
+        let parsedUrl = new URL(window.location.href);
+        let id = parsedUrl.searchParams.get("id"); 
         let bouton = document.getElementById('button');
         let couleurChoisie = '';
 
@@ -46,7 +48,7 @@ promiseGetProduct
             let quantitehoisie = '';
             quantiteChoisie = boutonQuantite.value;
             
-            let produit = {"nom" : nom, "prix" : prix, "url" : url, "couleur" : couleurChoisie, "quantite" : quantiteChoisie};
+            let produit = {"nom" : nom, "prix" : prix, "url" : url, "couleur" : couleurChoisie, "quantite" : quantiteChoisie, "id" : id};
             if (couleurChoisie == ""){
                 document.getElementById('alerte').innerHTML = 'Veuillez choisir une couleur';
             }else{
@@ -55,6 +57,7 @@ promiseGetProduct
                 document.getElementById('quantitePanier').innerHTML = localStorage.length;
                 console.log(localStorage);
             }
+
     });
 
     //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
