@@ -6,6 +6,10 @@ header{
     background-color: #f3e9f1;
 }
 
+footer{
+    margin-top: 50px;
+}
+
 #logo{
     width: 35%;
 }
@@ -21,10 +25,6 @@ h1, h2{
 h2{
     margin-top: 65px;
     margin-bottom: 65px;
-}
-
-.navbar-toggler{
-    background-color: blue;
 }
 
 .jumbotron{
@@ -68,6 +68,13 @@ img{
     .lignePanier-img{
         width: 100px;
     }
+    
+    .carteproduit-ref_choixPrix{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
 }
 
 .carteAccueil{
@@ -91,9 +98,9 @@ img{
     background-color: #f3e9f1;
 }
 
-.carteproduit-ref_colorPrix{
+.carteproduit-ref_choixPrix{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
@@ -102,4 +109,8 @@ img{
     margin: auto;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.quantite{
+    width: 50px;
 }

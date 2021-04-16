@@ -33,14 +33,20 @@ promiseGetProduct
         document.getElementById('titre').innerHTML = nom;
         
         //////////////////création de la carte produit////////////////////
-        document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, prix);
+        document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, nom, prix);
 
         let boutonCouleur = document.getElementById('couleur');
+        let boutonQuantite = document.getElementById('quantite');
+        
 
         //////////////////Au clic du bouton, ajout du produit au panier////////////////////
         bouton.addEventListener('click', () => {
+
+            //////////////////Récupération de la quantité choisie par l'utilisateur////////////////////
+            let quantitehoisie = '';
+            quantiteChoisie = boutonQuantite.value;
             
-            let produit = {"nom" : nom, "prix" : prix, "url" : url, "couleur" : couleurChoisie};
+            let produit = {"nom" : nom, "prix" : prix, "url" : url, "couleur" : couleurChoisie, "quantite" : quantiteChoisie};
             if (couleurChoisie == ""){
                 document.getElementById('alerte').innerHTML = 'Veuillez choisir une couleur';
             }else{
@@ -49,17 +55,19 @@ promiseGetProduct
                 document.getElementById('quantitePanier').innerHTML = localStorage.length;
                 console.log(localStorage);
             }
-        });
+    });
 
-        //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
-        boutonCouleur.addEventListener('change', (selection) =>{
-            couleurChoisie = selection.target.value;
-        });
+    //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
+    boutonCouleur.addEventListener('change', (selection) =>{
+        couleurChoisie = selection.target.value;
+    });
 
-        //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
-        document.getElementById('quantitePanier').innerHTML = localStorage.length;
+
+    //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
+    document.getElementById('quantitePanier').innerHTML = localStorage.length;
 
     })
+
     .catch(function(erreur) {
         console.log(erreur);
     });
@@ -67,8 +75,8 @@ promiseGetProduct
 
 
 
-const creationCardProduit = (url, description,couleurs, prix) => {
-    return '<div class="card carteProduit" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body carteProduit-ref"><div class="card-text">'+ description +'</div><div class="card-text carteproduit-ref_colorPrix"><label for="couleur">Choisissez la couleur que vous souhaitez<br /><select name="couleur" id="couleur">'+ creationListeCouleur(couleurs) +'</select></label><div class="card-text">'+ prix +'€</div></div><div id="alerte"></div></div></div>';
+const creationCardProduit = (url, description, couleurs, nom, prix) => {
+    return '<div class="card carteProduit" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body carteProduit-ref"><div class="card-text">'+ description +'</div><div class="card-text carteproduit-ref_choixPrix"><label>Choisissez la couleur que vous souhaitez<br /><select name="couleur" class="form-control" id="couleur">'+ creationListeCouleur(couleurs) +'</select></label><label>Choisissez la quantité que vous souhaitez</br><input type="number" min="1" max="10" value="1" class="quantite form-control" id="quantite"/></label><div class="card-text">'+ prix +'€</div></div><div id="alerte"></div></div></div>';
 }
 
 const creationListeCouleur = (couleurs) =>{
