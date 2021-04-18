@@ -8,6 +8,7 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
 
     <title>Orinoco</title>
 </head>
@@ -37,13 +38,11 @@
                 </ul>
             </div>
         </nav>
+        <h1 class=" jumbotron orinours">Orinours</h1>
     </header>
 
     <main>
         <section>
-            <div class="jumbotron">
-                <h1>Votre panier</h1>
-            </div>
             <div class="container" id="container">
                 <div class="table-responsive-sm">
                     <table class="table table-dark w-auto-sm" id="liste">
@@ -89,21 +88,21 @@
                     <label for="email">Votre Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Email" required>
                     <div class="valid-feedback">Ok !</div>
-                    <div class="invalid-feedback">Valeur incorrecte</div>
+                    <div class="invalid-feedback">Veuillez entrer un email valide</div>
                 </div>
                 <h3>Informations de paiement</h3>
                 <div class="form-group">
                     <label for="numeroCarte">Numéro carte bancaire</label>
                     <input type="number" class="form-control" id="numeroCarte" required>
                     <div class="valid-feedback">Ok !</div>
-                    <div class="invalid-feedback">Valeur incorrecte</div>
+                    <div class="invalid-feedback">Numéro de carte non valide</div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-4">
                         <label for="expirationCarte">Date d'expiration</label>
                         <input type="month" class="form-control" id="expirationCarte" value="2021-15" required>
                         <div class="valid-feedback">Ok !</div>
-                        <div class="invalid-feedback">Valeur incorrecte</div>
+                        <div class="invalid-feedback">Veuillez entrer la date d'expiration de votre carte bancaire</div>
                     </div>
                     <div class="form-group col-4">
                         <label for="cvc">Code de vérification</label>
@@ -120,27 +119,30 @@
     <footer class="container jumbotron">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card">
+                <div class="card carte-footer">
                     <svg class="card-img-left" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
                     </svg>
+                    Paiement sécurisé
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card">
+                <div class="card carte-footer">
                     <svg class="card-img-left" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
                         <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                     </svg>
+                    Livraison rapide
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card">
+                <a class="card carte-footer" href="contact@orinoco.fr">
                 <svg class="card-img-left" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                     <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
                     <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
                   </svg>
-                </div>
+                  Contactez nous
+                </a>
             </div>
         </div>
     </footer>
@@ -150,8 +152,9 @@
     <script type="text/javascript" src="js/panier.js"></script>
 
     <!-- jQuery, Popper.js et Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 </html>

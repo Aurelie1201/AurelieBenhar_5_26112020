@@ -54,8 +54,7 @@ boutonValider.addEventListener('click', () => {
 //////////////////clic sur le bouton pour passer commande////////////////////
 formulaire.addEventListener('submit', (event) =>{
     
-    ///////////Vérificaction que les données saisies soient valides////////
-    if(formulaire.checkValidity()){
+    if(formulaire.checkValidity()){///////////Vérificaction que les données saisies soient valides
         let firstName = document.getElementById('prenom').value;
         let lastName = document.getElementById('nom').value;
         let address = document.getElementById('adresse').value;
@@ -83,19 +82,3 @@ formulaire.addEventListener('submit', (event) =>{
     event.preventDefault();
     
 });
-
-
-// const promiseGetAPI = new Promise(function(resolve, reject){
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("GET", "https://jwdp5.herokuapp.com/api/teddies", true);
-//     xhr.onreadystatechange = function(){
-//         if(this.readyState == 4){
-//             if(this.status == 200){
-//                 resolve(JSON.parse(xhr.response)); 
-//             } else{
-//                 reject(xhr.status);
-//             }
-//          }
-//     }
-//     xhr.send();
-// });

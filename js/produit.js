@@ -1,8 +1,8 @@
 
 const promiseGetProduct = new Promise(function(resolve, reject){
      
-    let parsedUrl = new URL(window.location.href);  //////////////////Récupération de l'identifiant
-    let id = parsedUrl.searchParams.get("id");      //////////////////du produit dans l'url de la page
+    let Url = new URL(window.location.href);  //////////////////Récupération de l'identifiant
+    let id = Url.searchParams.get("id");      //////////////////du produit dans l'url de la page
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "https://jwdp5.herokuapp.com/api/teddies/"+id, true);
     xhr.onreadystatechange = function(){
@@ -31,11 +31,13 @@ promiseGetProduct
         let couleurChoisie = '';
 
         console.log(couleurs);
-        //////////////////Ajout du nom du nounours comme titre h1////////////////////
-        document.getElementById('titre').innerHTML = nom;
         
         //////////////////création de la carte produit////////////////////
         document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, nom, prix);
+
+        
+        //////////////////Ajout du nom du nounours comme titre h1////////////////////
+        document.getElementById('titre').innerHTML = nom;
 
         let boutonCouleur = document.getElementById('couleur');
         let boutonQuantite = document.getElementById('quantite');
@@ -79,7 +81,7 @@ promiseGetProduct
 
 
 const creationCardProduit = (url, description, couleurs, nom, prix) => {
-    return '<div class="card carteProduit" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body carteProduit-ref"><div class="card-text">'+ description +'</div><div class="card-text carteproduit-ref_choixPrix"><label>Choisissez la couleur que vous souhaitez<br /><select name="couleur" class="form-control" id="couleur">'+ creationListeCouleur(couleurs) +'</select></label><label>Choisissez la quantité que vous souhaitez</br><input type="number" min="1" max="10" value="1" class="quantite form-control" id="quantite"/></label><div class="card-text">'+ prix +'€</div></div><div id="alerte"></div></div></div>';
+    return '<div class="card carteProduit" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body carteProduit-ref"><h1 id="titre"></h1><div class="card-text">'+ description +'</div><div class="card-text carteproduit-ref_choixPrix"><label>Choisissez la couleur que vous souhaitez<br /><select name="couleur" class="form-control" id="couleur">'+ creationListeCouleur(couleurs) +'</select></label><label>Choisissez la quantité que vous souhaitez</br><input type="number" min="1" max="10" value="1" class="quantite form-control" id="quantite"/></label><div class="card-text prix">'+ prix +'€</div></div><div id="alerte"></div></div></div>';
 }
 
 const creationListeCouleur = (couleurs) =>{
