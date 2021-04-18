@@ -3,11 +3,12 @@ for (let i=0; i < localStorage.length; i++){
     let key = localStorage.key(i);
     console.log(key, localStorage.getItem(key));
 }
-
+localStorage.removeItem("commande");
 let boutonVider = document.getElementById('boutonViderpanier');
 let boutonValider = document.getElementById('boutonValiderCommande');
 let quantite = "";
 let productId = [];
+let prixTotal = 0;
 
 //////////////////Création d'une ligne d'un produit dans le panier////////////////////
 const creationLignePanier = (url, nom, couleur, quantite, prix) =>{
@@ -17,7 +18,6 @@ const creationLignePanier = (url, nom, couleur, quantite, prix) =>{
 //////////////////Création d'une ligne produit pour tous les produits du panier////////////////////
 const creationPanier = () =>{
     let ligne = '<tr><th  scope="col"></th><th  scope="col">Nom</th><th  scope="col">couleur</th><th  scope="col">quantité</th><th  scope="col">prix</th></tr>';
-    let prixTotal = 0;
     for (let i=0; i < localStorage.length; i++){
         let key = localStorage.key(i);
         let produit = JSON.parse(localStorage.getItem(key)) ;
@@ -54,31 +54,56 @@ boutonValider.addEventListener('click', () => {
 //////////////////clic sur le bouton pour passer commande////////////////////
 formulaire.addEventListener('submit', (event) =>{
     
-    if(formulaire.checkValidity()){///////////Vérificaction que les données saisies soient valides
-        let firstName = document.getElementById('prenom').value;
-        let lastName = document.getElementById('nom').value;
-        let address = document.getElementById('adresse').value;
-        let city = document.getElementById('ville').value;
-        let email = document.getElementById('email').value;
-        let contact = {firstName : firstName, lastName : lastName, address : address, city : city, email : email};
-        let commande = {contact : contact, products : productId};
+    if(localStorage.length == 0){
+        alert('Vous ne pouvez pas passer commande, votre panier est vide!');
+    }else{
+        if(formulaire.checkValidity()){///////////Vérificaction que les données saisies soient valides
+            let firstName = document.getElementById('prenom').value;
+            let lastName = document.getElementById('nom').value;
+            let address = document.getElementById('adresse').value;
+            let city = document.getElementById('ville').value;
+            let email = document.getElementById('email').value;
+            let contact = {firstName : firstName, lastName : lastName, address : address, city : city, email : email};
+            let commande = {contact : contact, products : productId};
 
-        ///////////Appel de l'API pour l'envoi des données///////////
-        let requete = new XMLHttpRequest();
-        requete.onreadystatechange = function(){
-            if(this.readyState == 4){
-                if(this.status == 201){
-                    console.log(this.response); 
-                } else{
-                    alert(this.status);
+            ///////////Appel de l'API pour l'envoi des données///////////
+            const promiseGetCommande = new Promise(function(resolve, reject){
+                let requete = new XMLHttpRequest();
+                requete.onreadystatechange = function(){
+                    if(this.readyState == 4){
+                        if(this.status == 201){
+                            resolve(JSON.parse(this.response));
+                        } else{
+                            reject(this.status);
+                        }
+                    }
                 }
-            }
+                requete.open("POST", "https://jwdp5.herokuapp.com/api/teddies/order");
+                requete.setRequestHeader('Content-Type', 'application/json');
+                requete.send(JSON.stringify(commande));
+            
+            
+            });
+
+            promiseGetCommande
+                .then(function (response) {
+                    let confirmationCommande = {"prenom" : firstName, "nom" : lastName, "prix" : prixTotal, "idCommande" : response.orderId};
+                    localStorage.setItem("commande", JSON.stringify(confirmationCommande));
+                    console.log(localStorage);
+                    alert('Votre commande est validée');
+                    window.location = 'confirmation.html';
+                })
+                .catch(function (erreur) {
+                    console.log(erreur);
+                })
+
+        }else{
+            event.preventDefault();
         }
-        requete.open("POST", "https://jwdp5.herokuapp.com/api/teddies/order");
-        requete.setRequestHeader('Content-Type', 'application/json');
-        requete.send(JSON.stringify(commande));
-    };
-    
+    }
+    // let retourApi = JSON.parse(this.response);
+    // let confirmationCommande = {"prenom" : firstName, "nom" : lastName, "prix" : prixTotal, "idCommande" : retourApi.orderId};
+    // localStorage.setItem("commande", JSON.stringify(confirmationCommande));
+    // console.log(localStorage);
     event.preventDefault();
-    
 });
