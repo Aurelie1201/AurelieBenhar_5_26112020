@@ -20,7 +20,7 @@ promiseGetAPI
             nom = response[i].name;
             prix = response[i].price/100;
             idProduit = response[i]._id;
-            document.getElementsByClassName('col-md-6')[i].innerHTML = creationCarteProduit(url, nom, prix, idProduit);
+            creationCarteProduit(url, nom, prix, idProduit, i);
         }
             //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
         document.getElementById('quantitePanier').innerHTML = localStorage.length;
@@ -29,19 +29,48 @@ promiseGetAPI
     .catch(function(erreur){
         console.log(erreur);
     });
+
 //////////création d'une <div> avec une classe .row enfant de l'élément mis en paramètre//////////
 const ajoutLigne = (element) => {
     const row = document.createElement("div");
     row.classList.add("row");
     element.appendChild(row);
 }
+
 //////////création d'une <div> avec une classe .col-md-6 enfant de l'élément mis en paramètre//////////
 const ajoutColonne = (element) => {
     const col = document.createElement("div");
     col.classList.add("col-md-6");
     element.appendChild(col);
 }
+
 //////////écriture du html pour créer une 'card' pour un produit//////////
-const creationCarteProduit = (url, nom, prix, idProduit) => {
-    return '<a class="card m-4 carteAccueil" href="produit.html?id='+ idProduit +'"><img class="card-img-top carteAccueil-img" alt="image ourson" src="'+ url +'"/><div class="card-body"><div class="card-text carteAccueil-ref"><div>'+ nom +'</div><div>'+ prix +'€</div></div></div></a>';
+const creationCarteProduit = (url, nom, prix, idProduit, i) => {
+    let aElement = document.createElement('a');
+    let imgElement = document.createElement('img');
+    let divCardBody = document.createElement('div');
+    let divCardText = document.createElement('div');
+    let divNom = document.createElement('div');
+    let divPrix = document.createElement('div');
+
+    aElement.classList.add('card', 'm-4', 'carteAccueil');
+    aElement.setAttribute('href', 'produit.html?id='+idProduit);
+
+    imgElement.setAttribute('alt', 'image ourson');
+    imgElement.setAttribute('src', url);
+    imgElement.classList.add('card-img-top', 'carteAccueil-img');
+
+    divCardBody.classList.add('card-body');
+
+    divCardText.classList.add('card-text', 'carteAccueil-ref');
+
+    divNom.innerHTML = nom;
+    divPrix.innerHTML = prix;
+
+    document.getElementsByClassName('col-md-6')[i].appendChild(aElement);
+    aElement.appendChild(imgElement);
+    aElement.appendChild(divCardBody);
+    divCardBody.appendChild(divCardText);
+    divCardText.appendChild(divNom);
+    divCardText.appendChild(divPrix);
 }

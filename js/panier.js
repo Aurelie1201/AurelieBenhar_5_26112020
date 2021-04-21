@@ -84,7 +84,7 @@ formulaire.addEventListener('submit', (event) =>{
             
             
             });
-
+// fetch("https://jwdp5.herokuapp.com/api/teddies/order", commande).then
             promiseGetCommande
                 .then(function (response) {
                     let confirmationCommande = {"prenom" : firstName, "nom" : lastName, "prix" : prixTotal, "idCommande" : response.orderId};

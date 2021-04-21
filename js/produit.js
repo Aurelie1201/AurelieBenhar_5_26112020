@@ -33,7 +33,8 @@ promiseGetProduct
         console.log(couleurs);
         
         //////////////////création de la carte produit////////////////////
-        document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, nom, prix);
+        // document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, nom, prix);
+        creationCardProduit(url, description, couleurs, nom, prix);
 
         let boutonCouleur = document.getElementById('couleur');
         let boutonQuantite = document.getElementById('quantite');
@@ -75,17 +76,40 @@ promiseGetProduct
         console.log(erreur);
     });
 
-
-
-
 const creationCardProduit = (url, description, couleurs, nom, prix) => {
-    return '<div class="card carteProduit" ><img class="card-img-top" alt="image ourson" src="'+ url +'"/><div class="card-body carteProduit-ref"><h1 id="titre">'+ nom +'</h1><div class="card-text">'+ description +'</div><div class="card-text carteproduit-ref_choixPrix"><label>Choisissez la couleur que vous souhaitez<br /><select name="couleur" class="form-control" id="couleur">'+ creationListeCouleur(couleurs) +'</select></label><label>Choisissez la quantité que vous souhaitez</br><input type="number" min="1" max="10" value="1" class="quantite form-control" id="quantite"/></label><div class="card-text prix">'+ prix +'€</div></div><div id="alerte"></div></div></div>';
-}
+    let carteProduitElement = document.getElementsByClassName('card')[0];
+    let carteBodyElement = document.getElementsByClassName('card-body')[0];
+    let imageProduitElement = document.createElement('img');
 
-const creationListeCouleur = (couleurs) =>{
-let ligne = '<option value="">sélectionnez votre couleur</option>';;
+    imageProduitElement.classList.add('card-img-top');
+    imageProduitElement.setAttribute('alt', 'image ourson');
+    imageProduitElement.setAttribute('src', url);
+
+    carteProduitElement.insertBefore(imageProduitElement, carteBodyElement);
+
+    let titreProduitElement = document.getElementById('titre');
+    let descriptionElement = document.getElementById('description');
+
+    titreProduitElement.innerHTML = nom;
+
+    descriptionElement.innerHTML = description;
+
+    let selectElement = document.getElementById('couleur');
+    let optionElement = document.createElement('option');
+
+    optionElement.setAttribute('value', '');
+    optionElement.innerHTML = 'Sélectionnez une couleur';
+
+    selectElement.appendChild(optionElement);
+
     for(i=0 ; i < couleurs.length; i++){
-        ligne += '<option value="'+ couleurs[i] +'">'+ couleurs[i] +'</option>';
-    }
-return ligne;
-}
+        optionElement = document.createElement('option');
+        optionElement.setAttribute('value', couleurs[i]);
+        optionElement.innerHTML = couleurs[i];
+        selectElement.appendChild(optionElement);
+    };
+
+    let prixElement = document.getElementById('prix');
+
+    prixElement.innerHTML = prix + '€';
+};

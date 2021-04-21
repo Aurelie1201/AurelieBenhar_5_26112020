@@ -44,7 +44,24 @@
     <main>
         <section>
             <div class="container" id="container">
+                <div class="card carteProduit" >
+                    <div class="card-body carteProduit-ref">
+                        <h1 id="titre"></h1>
+                        <div class="card-text" id="description"></div>
+                        <div class="card-text carteproduit-ref_choixPrix">
+                            <label>Choisissez la couleur que vous souhaitez<br />
+                                <select name="couleur" class="form-control" id="couleur">
 
+                                </select>
+                            </label>
+                            <label>Choisissez la quantité que vous souhaitez</br>
+                                <input type="number" min="1" max="10" value="1" class="quantite form-control" id="quantite"/>
+                            </label>
+                            <div class="card-text prix" id="prix"></div>
+                        </div>
+                        <div id="alerte"></div>
+                    </div>
+                </div>
             </div>
             <button type="button" id="button" class="btn btn-dark">Ajouter moi à votre panier</button>
         </section>
