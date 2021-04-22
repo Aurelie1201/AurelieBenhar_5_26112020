@@ -65,7 +65,7 @@ const creationCarteProduit = (url, nom, prix, idProduit, i) => {
     divCardText.classList.add('card-text', 'carteAccueil-ref');
 
     divNom.innerHTML = nom;
-    divPrix.innerHTML = prix;
+    divPrix.innerHTML = prix+'€';
 
     document.getElementsByClassName('col-md-6')[i].appendChild(aElement);
     aElement.appendChild(imgElement);
