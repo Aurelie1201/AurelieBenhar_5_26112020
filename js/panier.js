@@ -3,6 +3,7 @@ for (let i=0; i < localStorage.length; i++){
     let key = localStorage.key(i);
     console.log(key, localStorage.getItem(key));
 }
+
 localStorage.removeItem("commande");
 let boutonVider = document.getElementById('boutonViderpanier');
 let boutonValider = document.getElementById('boutonValiderCommande');
@@ -43,21 +44,67 @@ boutonVider.addEventListener('click', () => {
     window.scroll(0, 0);    /////Retour en haut de page
 });
 
+const testMail = (mail) =>{
+    let regMail = new RegExp ("^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}");
+
+    return regMail.test(mail);
+};
+
+const testMot = (mot) =>{
+    let regMot = new RegExp ("^[a-zA-Zéèàîï]+([-'\s][a-zA-Zéèàîï])?$");
+
+    return regMot.test(mot);
+};
+
+const testAdresse = (adresse) =>{
+    let regAdresse = new RegExp ("[a-zA-Zéèàîï0-9]+([-'\s][a-zA-Zéèàîï0-9])?$");
+
+    return regAdresse.test(adresse);
+};
+
+const alerteValidation = (id, test) =>{
+    let element = document.getElementById(id);
+    let elementParent = element.parentElement;
+    if(test){
+        elementParent.children[2].style.display = 'block';
+        elementParent.children[3].style.display = 'none';
+        return true;
+    }else{
+        elementParent.children[2].style.display = 'none';
+        elementParent.children[3].style.display = 'block';
+        return false;
+    }
+}
+
+const validationFormulaire = () =>{
+    let mail = document.getElementById('email').value;
+    let prenom = document.getElementById('prenom').value;
+    let nom = document.getElementById('nom').value;
+    let adresse = document.getElementById('adresse').value;
+    let ville = document.getElementById('ville').value;
+    let mailOk, prenomOk, nomOk, adresseOk, villeOk;
+
+    prenomOk = alerteValidation('prenom', testMot(prenom));
+    nomOk = alerteValidation('nom', testMot(nom));
+    adresseOk = alerteValidation('adresse', testAdresse(adresse));
+    villeOk = alerteValidation('ville', testMot(ville));
+    mailOk = alerteValidation('email', testMail(mail));
+
+    if(prenomOk && nomOk && villeOk && adresseOk && mailOk){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 let formulaire = document.getElementsByTagName('form')[0];
-
-//////// ajout de la classe "was-validated" au formulaire pour la vérification des valeurs saisies au clique du bouton pour passer commande//////
-boutonValider.addEventListener('click', () => {
-    formulaire.classList.add('was-validated');
-    console.log(formulaire.classList);
-})
-
 //////////////////clic sur le bouton pour passer commande////////////////////
 formulaire.addEventListener('submit', (event) =>{
     
     if(localStorage.length == 0){
         alert('Vous ne pouvez pas passer commande, votre panier est vide!');
     }else{
-        if(formulaire.checkValidity()){///////////Vérificaction que les données saisies soient valides
+        if(validationFormulaire()){///////////Vérification que les données saisies soient valides
             let firstName = document.getElementById('prenom').value;
             let lastName = document.getElementById('nom').value;
             let address = document.getElementById('adresse').value;
@@ -66,7 +113,7 @@ formulaire.addEventListener('submit', (event) =>{
             let contact = {firstName : firstName, lastName : lastName, address : address, city : city, email : email};
             let commande = {contact : contact, products : productId};
 
-            ///////////Appel de l'API pour l'envoi des données///////////
+            /////////Appel de l'API pour l'envoi des données///////////
             const promiseGetCommande = new Promise(function(resolve, reject){
                 let requete = new XMLHttpRequest();
                 requete.onreadystatechange = function(){
@@ -84,7 +131,7 @@ formulaire.addEventListener('submit', (event) =>{
             
             
             });
-// fetch("https://jwdp5.herokuapp.com/api/teddies/order", commande).then
+
             promiseGetCommande
                 .then(function (response) {
                     let confirmationCommande = {"prenom" : firstName, "nom" : lastName, "prix" : prixTotal, "idCommande" : response.orderId};
@@ -101,9 +148,5 @@ formulaire.addEventListener('submit', (event) =>{
             event.preventDefault();
         }
     }
-    // let retourApi = JSON.parse(this.response);
-    // let confirmationCommande = {"prenom" : firstName, "nom" : lastName, "prix" : prixTotal, "idCommande" : retourApi.orderId};
-    // localStorage.setItem("commande", JSON.stringify(confirmationCommande));
-    // console.log(localStorage);
     event.preventDefault();
 });

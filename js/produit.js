@@ -33,7 +33,6 @@ promiseGetProduct
         console.log(couleurs);
         
         //////////////////création de la carte produit////////////////////
-        // document.getElementById('container').innerHTML = creationCardProduit(url, description, couleurs, nom, prix);
         creationCardProduit(url, description, couleurs, nom, prix);
 
         let boutonCouleur = document.getElementById('couleur');
@@ -59,41 +58,65 @@ promiseGetProduct
                 window.scroll(0, 0);    /////Retour en haut de page
             }
 
-    });
+        });
 
-    //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
-    boutonCouleur.addEventListener('change', (selection) =>{
-        couleurChoisie = selection.target.value;
-    });
+        //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
+        boutonCouleur.addEventListener('change', (selection) =>{
+            couleurChoisie = selection.target.value;
+        });
 
 
-    //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
-    document.getElementById('quantitePanier').innerHTML = localStorage.length;
+        //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
+        document.getElementById('quantitePanier').innerHTML = localStorage.length;
 
-    })
+        })
 
     .catch(function(erreur) {
         console.log(erreur);
     });
 
+/////création d'une 'card' produit//////
 const creationCardProduit = (url, description, couleurs, nom, prix) => {
     let carteProduitElement = document.getElementsByClassName('card')[0];
     let carteBodyElement = document.getElementsByClassName('card-body')[0];
+    
+    creationImageProduit(carteProduitElement, carteBodyElement, url);
+    creationTitreProduit(nom);
+    creationDescriptionProduit(description);
+    creationOptionProduit(couleurs);
+    creationPrixProduit(prix);
+};
+
+/////création d'un élément <img> en tant qu'enfant de l'élément 'elementParent'
+/////mais avant l'élément 'elementSuivant'
+/////avec 'url' comme valeur de l'attribut src
+const creationImageProduit = (elementParent, elementSuivant, url) =>{
     let imageProduitElement = document.createElement('img');
 
     imageProduitElement.classList.add('card-img-top');
     imageProduitElement.setAttribute('alt', 'image ourson');
     imageProduitElement.setAttribute('src', url);
 
-    carteProduitElement.insertBefore(imageProduitElement, carteBodyElement);
+    elementParent.insertBefore(imageProduitElement, elementSuivant);
+}
 
+/////ajout du 'nom' dans l'élément d'id 'titre'/////
+const creationTitreProduit = (nom) =>{
     let titreProduitElement = document.getElementById('titre');
-    let descriptionElement = document.getElementById('description');
 
     titreProduitElement.innerHTML = nom;
+}
+
+/////ajout de 'description' dans l'élément d'id 'description'/////
+const creationDescriptionProduit = (description) =>{
+    let descriptionElement = document.getElementById('description');
 
     descriptionElement.innerHTML = description;
+}
 
+/////Création des options de l'élément select d'id 'couleur'
+/////avec les différentes couleurs du produit
+const creationOptionProduit = (couleurs) =>{
     let selectElement = document.getElementById('couleur');
     let optionElement = document.createElement('option');
 
@@ -108,8 +131,11 @@ const creationCardProduit = (url, description, couleurs, nom, prix) => {
         optionElement.innerHTML = couleurs[i];
         selectElement.appendChild(optionElement);
     };
+}
 
+/////ajout de 'prix' dans l'élément d'id 'prix'/////
+const creationPrixProduit = (prix) =>{
     let prixElement = document.getElementById('prix');
 
     prixElement.innerHTML = prix + '€';
-};
+}
