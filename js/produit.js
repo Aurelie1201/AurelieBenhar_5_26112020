@@ -1,10 +1,9 @@
-
+//https://jwdp5.herokuapp.com/api/teddies/
 const promiseGetProduct = new Promise(function(resolve, reject){
-     
     let Url = new URL(window.location.href);  //////////////////Récupération de l'identifiant
     let id = Url.searchParams.get("id");      //////////////////du produit dans l'url de la page
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://jwdp5.herokuapp.com/api/teddies/"+id, true);
+    xhr.open("GET", "http://localhost:3000/api/teddies/"+id, true);
     xhr.onreadystatechange = function(){
         if(this.readyState == 4){
             if(this.status == 200){
@@ -13,7 +12,7 @@ const promiseGetProduct = new Promise(function(resolve, reject){
                 reject(xhr.status);
             }
          }
-    }
+    };
     xhr.send();
 });
 
@@ -43,12 +42,15 @@ promiseGetProduct
         bouton.addEventListener('click', () => {
 
             //////////////////Récupération de la quantité choisie par l'utilisateur////////////////////
-            let quantitehoisie = '';
-            quantiteChoisie = boutonQuantite.value;
+            let quantiteChoisie = boutonQuantite.value;
+
+            console.log(quantiteChoisieVerif(quantiteChoisie));
             
             let produit = {"nom" : nom, "prix" : prix, "url" : url, "couleur" : couleurChoisie, "quantite" : quantiteChoisie, "id" : id};
             if (couleurChoisie == ""){
                 document.getElementById('alerte').innerHTML = 'Veuillez choisir une couleur';
+            }else if(quantiteChoisieVerif(quantiteChoisie) == false){
+                document.getElementById('alerte').innerHTML = 'Veuillez choisir une quantité';
             }else{
                 document.getElementById('alerte').innerHTML = '';
                 localStorage.setItem(localStorage.length, JSON.stringify(produit));
@@ -74,6 +76,11 @@ promiseGetProduct
     .catch(function(erreur) {
         console.log(erreur);
     });
+
+const quantiteChoisieVerif = (quantiteChoisie) =>{
+    let regNombre = new RegExp ("^[1-9]+[0-9]*");
+    return regNombre.test(quantiteChoisie);
+}
 
 /////création d'une 'card' produit//////
 const creationCardProduit = (url, description, couleurs, nom, prix) => {

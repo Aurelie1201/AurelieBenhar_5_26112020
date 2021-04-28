@@ -56,13 +56,13 @@ const testMail = (mail) =>{
 };
 
 const testMot = (mot) =>{
-    let regMot = new RegExp ("^[a-zA-Zéèàîï]+([-'\s][a-zA-Zéèàîï])?$");
+    let regMot = new RegExp ("^[a-zA-ZéèàçîïÉÈÎÏ '-]+$");
 
     return regMot.test(mot);
 };
 
 const testAdresse = (adresse) =>{
-    let regAdresse = new RegExp ("[a-zA-Zéèàîï0-9]+([-'\s][a-zA-Zéèàîï0-9])?$");
+    let regAdresse = new RegExp ("^[a-zA-Z0-9éèàçîïÉÈÎÏ '-]+$");
 
     return regAdresse.test(adresse);
 };
@@ -130,7 +130,7 @@ formulaire.addEventListener('submit', (event) =>{
                         }
                     }
                 }
-                requete.open("POST", "https://jwdp5.herokuapp.com/api/teddies/order");
+                requete.open("POST", "http://localhost:3000/api/teddies/order");  //https://jwdp5.herokuapp.com/api/teddies/order
                 requete.setRequestHeader('Content-Type', 'application/json');
                 requete.send(JSON.stringify(commande));
             

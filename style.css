@@ -24,6 +24,7 @@ footer{
     text-align: center;
     font-size: xx-large;
     background: linear-gradient(to bottom, #ce7d4d, #8f5bfe);
+    border-radius: 0;
 }
 
 #logo{
@@ -43,59 +44,12 @@ h2{
     margin-bottom: 65px;
 }
 
-/* .jumbotron{
-    background: linear-gradient(to top, #f3dfef, #935df4);
-} */
-
 img{
     width: 400px;
 }
 
 .lignePanier-img{
     width: 150px;
-}
-
-@media screen and (min-width: 1200px) {
-    .carteAccueil{
-        height: 360px;
-    }
-}
-
-@media screen and (min-width: 992px){
-    .carteProduit{
-        width: 600px;
-        margin: auto;
-    }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-    .carteAccueil{
-        height: 330px;
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .carteAccueil{
-        height: 270px;
-    }
-}
-
-@media screen and (max-width: 768px){
-    .lignePanier-img{
-        width: 100px;
-    }
-    
-    .carteproduit-ref_choixPrix{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-
-    .carte-footer{
-        flex-direction: column;
-        justify-content: space-around;
-    }
 }
 
 .carteAccueil{
@@ -145,4 +99,47 @@ img{
     font-size: x-large;
     text-align: center;
     margin-top: 30px;
+}
+
+@media screen and (min-width: 1200px) {
+    .carteAccueil{
+        height: 360px;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .carteProduit{
+        width: 600px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .carteAccueil{
+        height: 330px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .carteAccueil{
+        height: 270px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .lignePanier-img{
+        width: 100px;
+    }
+    
+    .carteproduit-ref_choixPrix{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .carte-footer{
+        flex-direction: column;
+        justify-content: space-around;
+    }
 }
