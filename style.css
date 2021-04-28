@@ -39,6 +39,10 @@ h1, h2{
     text-align: center;
 }
 
+#titre{
+    margin: 15px;
+}
+
 h2{
     margin-top: 65px;
     margin-bottom: 65px;

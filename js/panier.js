@@ -21,6 +21,7 @@ const creationLignePanier = (url, nom, couleur, quantite, prix) =>{
 //////////////////Création d'une ligne produit pour tous les produits du panier////////////////////
 const creationPanier = () =>{
     let ligne = '<tr><th  scope="col"></th><th  scope="col">Nom</th><th  scope="col">couleur</th><th  scope="col">quantité</th><th  scope="col">prix</th></tr>';
+    prixTotal = 0;
     for (let i=0; i < localStorage.length; i++){
         let key = localStorage.key(i);
         let produit = JSON.parse(localStorage.getItem(key)) ;
