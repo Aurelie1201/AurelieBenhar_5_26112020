@@ -1,5 +1,5 @@
 //////////////////Affichage du panier dans la console////////////////////
-for (let i=0; i < localStorage.length; i++){
+for(let i=0; i < localStorage.length; i++){
     let key = localStorage.key(i);
     console.log(key, localStorage.getItem(key));
 }
@@ -14,8 +14,8 @@ let prixTotal = 0;
 /////////////////////////////////////////////AFFICHAGE DU PANIER///////////////////////////////////////////////////////
 
 /////////////////Création d'une ligne d'un produit dans le panier////////////////////
-const creationLignePanier = (url, nom, couleur, quantite, prix) =>{
-    return '<tr><td><img class="lignePanier-img"src="'+ url +'" alt="image ourson"/></td><td>'+ nom +'</td><td>'+ couleur +'</td><td>'+ quantite +'</td><td>'+ prix +'€ x '+ quantite +' = '+ prix * quantite +'€</td></tr>';
+const creationLignePanier = (id, url, nom, couleur, quantite, prix) =>{
+    return '<tr><td><a href="produit.html?id='+ id +'"><img class="lignePanier-img"src="'+ url +'" alt="image ourson"/></a></td><td>'+ nom +'</td><td>'+ couleur +'</td><td>'+ quantite +'</td><td>'+ prix +'€ x '+ quantite +' = '+ prix * quantite +'€</td></tr>';
 };
 
 //////////////////Création d'une ligne produit pour tous les produits du panier////////////////////
@@ -27,7 +27,7 @@ const creationPanier = () =>{
         let produit = JSON.parse(localStorage.getItem(key)) ;
 
         productId.push(produit.id);
-        ligne += creationLignePanier(produit.url, produit.nom, produit.couleur, produit.quantite, produit.prix);
+        ligne += creationLignePanier(produit.id, produit.url, produit.nom, produit.couleur, produit.quantite, produit.prix);
         prixTotal += produit.prix * produit.quantite;
     };
     ligne += '<tr><td colspan="4">Prix total de votre panier</td><td>'+ prixTotal +'€</td></tr>'

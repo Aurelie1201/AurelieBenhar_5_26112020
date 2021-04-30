@@ -1,3 +1,19 @@
+//https://jwdp5.herokuapp.com/api/teddies
+const promiseGetAPI = new Promise(function(resolve, reject){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/api/teddies", true);
+    xhr.onreadystatechange = function(){
+        if(this.readyState === 4){
+            if(this.status === 200){
+                resolve(JSON.parse(xhr.response));
+            } else{
+                reject(xhr.status);
+            }
+         }
+    };
+    xhr.send();
+});
+
 //////////////////récupération de la promesse de la requête à l'API////////////////////
 promiseGetAPI
     .then(function(response){
@@ -54,6 +70,17 @@ const creationCarteProduit = (url, nom, prix, idProduit, i) => {
     creationNomPrixProduit(aElement, nom, prix);
 }
 
+/////////création d'un élément <a> avec un attribut href 
+////////contenant l'id d'un produit passé en paramètre.
+const creationLienProduit = (idProduit) =>{
+    let aElement = document.createElement('a');
+
+    aElement.classList.add('card', 'm-4', 'carteAccueil');
+    aElement.setAttribute('href', 'produit.html?id='+idProduit);
+
+    return aElement;
+}
+
 ///////création d'un élément <img>, enfant d'un élément passé en paramètre, 
 ///////avec un attribut src contenant une url passée en paramètre
 const creationImageProduit = (element, url) =>{
@@ -64,17 +91,6 @@ const creationImageProduit = (element, url) =>{
     imgElement.classList.add('card-img-top', 'carteAccueil-img');
 
     element.appendChild(imgElement);
-}
-
-/////////création d'un élément <a> avec un attribut href 
-////////contenant l'id d'un produit passé en paramètre.
-const creationLienProduit = (idProduit) =>{
-    let aElement = document.createElement('a');
-
-    aElement.classList.add('card', 'm-4', 'carteAccueil');
-    aElement.setAttribute('href', 'produit.html?id='+idProduit);
-
-    return aElement;
 }
 
 ///////création d'une <div class="card-body">, enfant d'un élément passé en paramètre,

@@ -37,16 +37,24 @@ promiseGetProduct
         let boutonCouleur = document.getElementById('couleur');
         let boutonQuantite = document.getElementById('quantite');
         
+        //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
+        boutonCouleur.addEventListener('change', (selection) =>{
+            couleurChoisie = selection.target.value;
+        });
 
         //////////////////Au clic du bouton, ajout du produit au panier////////////////////
         bouton.addEventListener('click', () => {
 
             //////////////////Récupération de la quantité choisie par l'utilisateur////////////////////
             let quantiteChoisie = boutonQuantite.value;
-
-            console.log(quantiteChoisieVerif(quantiteChoisie));
-            
-            let produit = {"nom" : nom, "prix" : prix, "url" : url, "couleur" : couleurChoisie, "quantite" : quantiteChoisie, "id" : id};
+            let produit = {
+                "nom" : nom, 
+                "prix" : prix, 
+                "url" : url, 
+                "couleur" : couleurChoisie, 
+                "quantite" : quantiteChoisie, 
+                "id" : id
+            };
             if (couleurChoisie == ""){
                 document.getElementById('alerte').innerHTML = 'Veuillez choisir une couleur';
             }else if(quantiteChoisieVerif(quantiteChoisie) == false){
@@ -62,12 +70,6 @@ promiseGetProduct
 
         });
 
-        //////////////////Récupération de la couleur choisie par l'utilisateur////////////////////
-        boutonCouleur.addEventListener('change', (selection) =>{
-            couleurChoisie = selection.target.value;
-        });
-
-
         //////////////////Ajout du nombre de produit dans le panier dans la barre de navigation////////////////////
         document.getElementById('quantitePanier').innerHTML = localStorage.length;
 
@@ -77,6 +79,7 @@ promiseGetProduct
         console.log(erreur);
     });
 
+////Vérification que la quantité choisie soit bien un nombre////
 const quantiteChoisieVerif = (quantiteChoisie) =>{
     let regNombre = new RegExp ("^[1-9]+[0-9]*");
     return regNombre.test(quantiteChoisie);
